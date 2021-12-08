@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Data Viz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3><a href='index.html'>Data Viz</a></h3>
+  </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Choose a Plot to Generate<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="gbar.html" class="w3-bar-item w3-button">Bar Chart</a>
+        <a href="gbar2.html" class="w3-bar-item w3-button">Multi Bar Chart</a>
+        <a href="ghis.html" class="w3-bar-item w3-button">Histogram</a>
+        <a href="gline.html" class="w3-bar-item w3-button">Line Chart</a>
+        <a href="gscatter.html" class="w3-bar-item w3-button">Scatter Plot</a>
+      </div>
+    </div>
+</nav>
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>DATAVIZ</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- scatter -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Bar Chart</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+    <style type="text/css">
+    .center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    }
+</style>
+</head>
+
+<script src="canvasjs.min.js"></script>
+
+
+ <h4>Instructions</h4>
+<p>Modify the bar chart by clicking on the bar and entering a value.</p>
+<p></p>
+  Title: <input id = "title" type="text" size="100" />
+<div id="chartContainer" style="height: 450px; width: 100%;"></div>
+
+<p></p>
+<button id="printChart">Download</button>
+
+  <div class="w3-container w3-padding-64" >
+    <h3>1. Create a bar chart that has a highest and lowest category.</h3>
+    <h3>2. Modify the bar chart to create an interesting story.</h3>
+    <h4>hint: Don't forget to add a title</h4>
+<textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+
+
+</div>
+
+<script>
+    var chart = new CanvasJS.Chart("chartContainer", {
+	title: {
+  	text: ""
+  },
+  subtitles: [{
+  	text: ""
+  }],
+  data: [
+    {
+      type: "column",
+               color: "red",
+
+      showInLegend: true,
+      legendMarkerColor: "black",
+      legendText: "Names",
+      click: function(e) {
+        var updatedValue = prompt("Please enter new value", e.dataPoint.y);
+        if (updatedValue === null || updatedValue === "" || updatedValue.match(/^\s*$/g) || isNaN(updatedValue)) {
+          alert("You either Cancelled / Entered invalid input")
+        } else {
+          e.dataPoint.y = Number(updatedValue);
+          chart.render();
+        }
+      },
+      dataPoints: [
+        {label: "Joseph", y: 3.4},
+        {label: "Jessy", y: 4.5},
+        {label: "Trin", y: 3.2 },
+        {label: "Chuck", y: 4 },
+        {label: "Dan", y: 3},
+        {label: "Nate", y: 4.6 },
+        {label: "Blair", y: 3.8 },
+      ]
+    }
+  ]
+});
+
+
+chart.render();
+
+document.getElementById("printChart").addEventListener("click", function() {
+  var viewportMinimum = chart.axisX[0].get("viewportMinimum");
+  var viewportMaximum = chart.axisX[0].get("viewportMaximum");
+  chart.axisX[0].set("viewportMinimum", null);
+  chart.axisX[0].set("viewportMaximum", null);
+  chart.exportChart({ format: "jpg" });
+	chart.axisX[0].set("viewportMinimum", viewportMinimum);
+  chart.axisX[0].set("viewportMaximum", viewportMaximum);
+});
+
+</script>
