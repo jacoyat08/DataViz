@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Data Viz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<script src="https://d3js.org/d3.v4.js"></script>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3><a href='index.html'>Data Viz</a></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="welcome.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"></a>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Bar Chart<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bar.html" class="w3-bar-item w3-button">One Variable Bar Chart</a>
+      <a href="multibar.html" class="w3-bar-item w3-button">Multiple Variables Bar Chart</a>
+      <a href="stackedbar.html" class="w3-bar-item w3-button">Stacked Variables Bar Chart</a>
+    </div>
+    </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Box-Plot<i class="fa fa-caret-down"></i></button>
+
+      <div class="w3-dropdown-content w3-bar-block">
+     <a href="boxplotone.html" class="w3-bar-item w3-button">One Variable Box-Plot</a>
+        <a href="multibox.html" class="w3-bar-item w3-button">Multiple Variables Box-Plot</a>
+        <a href="GroupedBoxPlot.html" class="w3-bar-item w3-button">Grouped Box-Plot</a>
+
+
+      </div>
+  </div>
+    <a href="histogram1.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Histogram</a>
+      <div class="w3-dropdown-hover">
+          <button class="w3-button">Line Chart<i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block">
+              <a href="line.html" class="w3-bar-item w3-button">One Variable Line Chart</a>
+              <a href="multiline.html" class="w3-bar-item w3-button">Multiple Variables Line Chart</a>
+          </div>
+      </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Scatter Plot<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="scatter.html" class="w3-bar-item w3-button">One Variable Scatter Plot</a>
+        <a href="multiscatter.html" class="w3-bar-item w3-button">Multiple Variables Scatter Plot</a></nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>DATAVIZ</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- scatter -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Scatter Plot</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+<meta charset="UTF-8">
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<h4>Instructions</h4>
+<p>Use your mouse hover over the scatter plot to get information about iPhones sold in the United States.</p>
+
+<div id='myDiv'></div>
+
+<div class="w3-container w3-padding-64" >
+<h5>1. What are  3 things you notice on the scatter plot?.</h>
+  <h6> hint: as year increases, what happens to iPhones sold?.</h6>
+  <textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+  <h5>2. Give an explanation for each thing you identified.</h5>
+<textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+  <h5>3 Does there appear to be an association between years and total iphones sold?</h5>
+    <h5>If so, describe the association, is it positive, negative, weak, or strong?</h5>
+<textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+
+</div>
+
+<script>
+var trace1 = {
+  x: [2007, 2008,2009,2010,2011,2012,2013,2014,2015,2016,2017],
+  y: [1.39, 11.63,20.73,39.99,72.3,125,150,169,231,211,170],
+  mode: 'markers',
+  name: 'North America',
+  text: ['iPhone 1','iPhone 3G','iPhone 3GS','iPhone 4','iPhone 4S','iPhone 5','iPhone 5C,5S','iPhone 6','iPhone 6s','iPhone 7','iPhone 8'],
+  marker: {
+    color: 'red',
+    size: 12,
+    line: {
+      color: 'red',
+      width: 0.5
+    }
+  },
+  type: 'scatter'
+};
+
+var data = [trace1];
+
+var layout = {
+  title: 'iPhone Sold in millions per year',
+  xaxis: {
+    title: 'Year',
+    showgrid: false,
+    zeroline: false
+  },
+  yaxis: {
+    title: 'Millions of iPhones sold in US',
+    showline: false
+  }
+};
+
+var config = {
+  displayModeBar: true,
+  modeBarButtonsToRemove: ['zoom2d','toggleSpikelines','autoScale2d','hoverCompareCartesian','hoverClosestCartesian','pan2d','select2d','lasso2d','resetScale2d'],
+  displaylogo: false
+};
+
+Plotly.newPlot('myDiv', data, layout, config);
+</script>
