@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Data Viz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<script src="https://d3js.org/d3.v4.js"></script>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3><a href='index.html'>Data Viz</a></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="welcome.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"></a>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Bar Chart<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="bar.html" class="w3-bar-item w3-button">One Variable Bar Chart</a>
+      <a href="multibar.html" class="w3-bar-item w3-button">Multiple Variables Bar Chart</a>
+      <a href="stackedbar.html" class="w3-bar-item w3-button">Stacked Variables Bar Chart</a>
+    </div>
+    </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Box-Plot<i class="fa fa-caret-down"></i></button>
+
+      <div class="w3-dropdown-content w3-bar-block">
+     <a href="boxplotone.html" class="w3-bar-item w3-button">One Variable Box-Plot</a>
+        <a href="multibox.html" class="w3-bar-item w3-button">Multiple Variables Box-Plot</a>
+        <a href="GroupedBoxPlot.html" class="w3-bar-item w3-button">Grouped Box-Plot</a>
+
+
+      </div>
+  </div>
+    <a href="histogram1.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Histogram</a>
+      <div class="w3-dropdown-hover">
+          <button class="w3-button">Line Chart<i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block">
+              <a href="line.html" class="w3-bar-item w3-button">One Variable Line Chart</a>
+              <a href="multiline.html" class="w3-bar-item w3-button">Multiple Variables Line Chart</a>
+          </div>
+      </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Scatter Plot<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="scatter.html" class="w3-bar-item w3-button">One Variable Scatter Plot</a>
+        <a href="multiscatter.html" class="w3-bar-item w3-button">Multiple Variables Scatter Plot</a></nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>DATAVIZ</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- scatter -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Multi-Variable Line Plot</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+<meta charset="UTF-8">
+
+<!-- Create a div where the graph will take place -->
+<style>
+h5 {
+  color: red;
+}
+h6 {
+  color: red;
+}
+</style>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<h4>Instructions</h4>
+<p>Use your mouse hover over or click on the line plots to get information about .</p>
+<p>Using the legend on the right of the line plot click to add or remove cities from the plot. </p>
+
+
+<div id='myDiv'></div>
+
+<div class="w3-container w3-padding-64" >
+  <h5>1. Identify 3 different things you see on the data visual.</h5>
+  <h6> hint: look at lows and highs. Do you see a pattern?</h6>
+<textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+  <h5>2. Give an explanation for each thing you identified.</h5>
+<textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+  <h5>3. Make a prediction for snow fall for these cities in the future.</h5>
+  <textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+</div>
+
+<script>
+  var trace1 = {
+  x: ['2017-01-04','2017-01-11','2017-01-18','2017-01-25','2017-02-04','2017-02-11','2017-02-18','2017-02-25'],
+  y: [1.6, 3.6,3.7,2.7,3.9,2.8,3.1,4.4],
+  name: 'New York',
+  type: 'scatter',
+  line: {color: 'blue'}
+
+};
+
+var trace2 = {
+  x: ['2017-01-04','2017-01-11','2017-01-18','2017-01-25','2017-02-04','2017-02-11','2017-02-18','2017-02-25'],
+  y: [3.4, 9.9, 8.9, 6.3, 2.7,6.2,8.3,9.5],
+  name: 'Chicago',
+  type: 'scatter'
+};
+
+var data = [trace1, trace2];
+
+  var layout = {
+  title: 'Snow Fall in Chicago vs New York',
+  yaxis: {
+    title: 'Snow Fall Amount (in.)',
+    showline: false
+  }
+};
+
+
+var config = {
+  displayModeBar: true,
+  modeBarButtonsToRemove: ['zoom2d','toggleSpikelines','autoScale2d','hoverCompareCartesian','hoverClosestCartesian','pan2d','select2d','lasso2d','resetScale2d'],
+  displaylogo: false
+};
+
+Plotly.newPlot('myDiv', data, layout, config);
+
+
+</script>
