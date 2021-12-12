@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Data Viz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3><a href='index.html'>Data Viz</a></h3>
+  </div>
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Choose a Plot to Generate<i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="gbar.html" class="w3-bar-item w3-button">Bar Chart</a>
+        <a href="gbar2.html" class="w3-bar-item w3-button">Multi Bar Chart</a>
+        <a href="ghis.html" class="w3-bar-item w3-button">Histogram</a>
+        <a href="gline.html" class="w3-bar-item w3-button">Line Chart</a>
+        <a href="gscatter.html" class="w3-bar-item w3-button">Scatter Plot</a>
+      </div>
+    </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>DATAVIZ</span>
+</header>
+
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- scatter -->
+  <div class="w3-container" id="packages" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Histogram</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+
+<h4>Instructions</h4>
+<p>Create a histogram by entering values separated by commas in the Y-values box.<p></p>
+
+<head>
+<link href="style.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+<script src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script>
+<script src="main.js"></script>
+</head>
+
+<div  id="histogram">
+  <form>
+    <div class="row">
+      <div class="col-4">
+        <label class="form-label" for="histogram-title">Title</label>
+        <input class="form-control" id="histogram-title" type="text" value="Title">
+      </div>
+      <p></p>
+      <div class="col-4">
+        <label class="form-label" for="histogram-x-axis">X-axis</label>
+        <input class="form-control" id="histogram-x-axis" type="text" value="Category">
+      </div>
+      <P></P>
+      <div class="col-4">
+        <label class="form-label" for="histogram-y-axis">Y-axis</label>
+        <input class="form-control" id="histogram-y-axis" type="text" value="How many">
+      </div>
+    </div>
+    <p></p>
+    <div class="row mt-3">
+      <div class="col-8">
+        <label class="form-label" for="histogram-y-values">Y values</label>
+        <input class="form-control" id="histogram-y-values" type="text" value="">
+      </div>
+      <P></P>
+      <div class="col-4">
+        <label class="form-label" for="histogram-bin">Bin width</label>
+        <input class="form-control" id="histogram-bin" min="1" step="1" type="number" value="1">
+      </div>
+    </div>
+  </form>
+  <div class="mt-4" id="histogram-chart-container">
+    <svg id="histogram-chart">
+      <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
+      <text id="histogram-chart-title" font-size="24px" font-weight="bold" x="50%" y="30"></text>
+      <text id="histogram-chart-x-axis" x="50%" y="100%" dy="-10px"></text>
+      <text id="histogram-chart-y-axis" x="-25%" y="20" transform="rotate(-90)"></text>
+      <g id="histogram-chart-x-ticks"></g>
+      <g id="histogram-chart-y-ticks"></g>
+      <g id="histogram-chart-bars"></g>
+    </svg>
+  </div>
+  <P></P>
+  <div class="mt-3 text-end">
+    <button class="btn btn-primary btn-sm" id="histogram-download" type="button">Download</button>
+  </div>
+</div>
+
+  <div class="w3-container w3-padding-64" >
+    <h3>1. Create a bell-shaped histogram. </h3>
+    <h4>hint: a “bell” curve and has one single peak in the middle.</h4>
+    <h3>2. Create a left skewed histogram. </h3>
+    <h4>hint: has a “tail” on the left side .</h4>
+    <h3>3. Generate a histogram and create a interesting story about it. </h3>
+    <h4>hint: Don't forget to add a title.</h4>
+    <textarea id="w3review" name="w3review" rows="3" cols="60"></textarea>
+  </div>
+</div>
+</html>
